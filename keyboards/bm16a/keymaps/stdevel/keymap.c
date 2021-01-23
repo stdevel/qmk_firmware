@@ -1,0 +1,96 @@
+/* Copyright 2019
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+#include QMK_KEYBOARD_H
+
+enum layers {
+  _BASE = 0,
+  _FN1,
+};
+
+// Defines emojis
+enum unicode_names {
+    DOGE,
+    SNEK,
+    TREX,
+    DUCK,
+    NERD,
+    ROFL,
+    ZANY,
+    SNEZ,
+    SHIT,
+    SHRG,
+    ELEP
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [DOGE] = 0x1F415, // 🐕
+    [SNEK] = 0x1F40D, // 🐍
+    [TREX] = 0x1F996, // 🦖
+    [DUCK] = 0x1F986, // 🦆
+    [NERD] = 0x1F913, // 🤓
+    [ROFL] = 0x1F923, // 🤣
+    [ZANY] = 0x1F92A, // 🤪
+    [SNEZ] = 0x1F927, // 🤧
+    [SHIT] = 0x1F4A9, // 💩
+    [SHRG] = 0x1F937, // 🤷🏻‍♂️
+    [ELEP] = 0x1F418, // 🐘
+};
+
+// Defines the keycodes used by our macros in process_record_user
+enum custom_keycodes {
+  QMKBEST = SAFE_RANGE,
+  QMKURL
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+  [_BASE] = LAYOUT_ortho_4x4(
+    MO(_FN1),  KC_VOLD,  KC_MUTE,  KC_VOLU , \
+    KC_PGDN,  KC_PGUP,  KC_F1,  KC_ESC, \
+    KC_P1, KC_P2, KC_P3,  KC_P4, \
+    KC_P5, KC_P6, KC_P7, KC_P8 \
+  ),
+  [_FN1] = LAYOUT_ortho_4x4(
+    _______,   KC_MPRV,    KC_MPLY,    KC_MNXT,   \
+    X(DOGE),   X(SNEK),    X(TREX),    X(DUCK),   \
+    X(NERD),   X(ROFL),    X(ZANY),    X(SNEZ),   \
+    X(SHIT),  X(SHRG),    X(ELEP),    RESET   \
+  )
+
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case QMKBEST:
+      if (record->event.pressed) {
+        // when keycode QMKBEST is pressed
+        //SEND_STRING("💩");
+        send_unicode_string("💩");
+      } else {
+        // when keycode QMKBEST is released
+      }
+      break;
+    case QMKURL:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING("https://qmk.fm/" SS_TAP(X_ENTER));
+      } else {
+        // when keycode QMKURL is released
+      }
+      break;
+  }
+  return true;
+}
