@@ -59,9 +59,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT_ortho_4x4(
     MO(_FN1),  KC_VOLD,  KC_MUTE,  KC_VOLU , \
-    KC_PGDN,  KC_PGUP,  KC_F1,  KC_ESC, \
-    KC_P1, KC_P2, KC_P3,  KC_P4, \
-    KC_P5, KC_P6, KC_P7, KC_P8 \
+    KC_F13,  KC_F14,  KC_F15,  KC_F16, \
+    KC_F17, KC_F18, KC_F19,  KC_F20, \
+    KC_F21, KC_F22, KC_F23, KC_F24 \
   ),
   [_FN1] = LAYOUT_ortho_4x4(
     _______,   KC_MPRV,    KC_MPLY,    KC_MNXT,   \
