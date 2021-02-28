@@ -55,16 +55,30 @@ enum custom_keycodes {
   QMKURL
 };
 
+// Tap Dance declarations
+enum {
+    TD_VDOWN_PREV,
+    TD_MUTE_PAUSE,
+    TD_VUP_NEXT
+};
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_VDOWN_PREV] = ACTION_TAP_DANCE_DOUBLE(KC_VOLD, KC_MPRV),
+    [TD_MUTE_PAUSE] = ACTION_TAP_DANCE_DOUBLE(KC_MUTE, KC_MPLY),
+    [TD_VUP_NEXT] = ACTION_TAP_DANCE_DOUBLE(KC_VOLU, KC_MNXT)
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT_ortho_4x4(
-    MO(_FN1),  KC_VOLD,  KC_MUTE,  KC_VOLU , \
+    MO(_FN1),  TD(TD_VDOWN_PREV),  TD(TD_MUTE_PAUSE),  TD(TD_VUP_NEXT) , \
     KC_F13,  KC_F14,  KC_F15,  KC_F16, \
     KC_F17, KC_F18, KC_F19,  KC_F20, \
     KC_F21, KC_F22, KC_F23, KC_DEL \
   ),
   [_FN1] = LAYOUT_ortho_4x4(
-    _______,   KC_MPRV,    KC_MPLY,    KC_MNXT,   \
+    _______,    _______,    _______,    _______,   \
     X(DOGE),   X(SNEK),    X(TREX),    X(DUCK),   \
     X(NERD),   X(ROFL),    X(ZANY),    X(SNEZ),   \
     X(SHIT),  X(SHRG),    X(ELEP),    RESET   \

@@ -21,3 +21,6 @@
 // specify Unicode mode
 // Possible values: UC_MAC, UC_LNX, UC_WIN, UC_BSD, UC_WINC
 #define UNICODE_SELECTED_MODES UC_LNX
+
+// double tapping
+#define TAPPING_TERM 175
