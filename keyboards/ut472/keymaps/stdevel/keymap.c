@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-------------------------------------------------------------------------.
    * |  ~  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  | Delete|
    * |-------------------------------------------------------------------------+
-   * |      |     |     |     |     |     |     |  -  |  =  |  [  |  ]  |  \   |
+   * |      |     |     |     |     |     |     |  -  |    |  [  |  ]  |  \   |
    * |-------------------------------------------------------------------------+
    * |       |     |     |     |     |     |     |     |     |     |     |     |
    * |-------------------------------------------------------------------------+
@@ -142,10 +142,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const rgblight_segment_t PROGMEM layer_r_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 8, HSV_CYAN}
+    {0, 8, HSV_YELLOW}
 );
 const rgblight_segment_t PROGMEM layer_l_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 8, HSV_PURPLE}
+    {0, 8, HSV_RED}
 );
 const rgblight_segment_t PROGMEM layer_func_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 8, HSV_GREEN}
@@ -161,6 +161,9 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
+    // set default color
+    rgblight_sethsv_noeeprom(HSV_PURPLE);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
